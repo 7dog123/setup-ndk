@@ -78,7 +78,7 @@ function getArchString(version: string): string {
     .join('')
   const num = parseInt(numStr, 10)
 
-  if (num >= 23) {
+  if (num >= 25) {
     return ''
   }
 

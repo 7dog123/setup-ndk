@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ndk: [r21e, r23]
+        ndk: [r21e, r23, r24, r25-beta4]
     steps:
       - uses: actions/checkout@v2
       - uses: ./
@@ -40,6 +40,18 @@ jobs:
         with:
           ndk-version: r23
           add-to-path: false
+      - uses: ./
+        id: install-ndk-r24
+        with:
+          ndk-version: r24
+          add-to-path: false
+      - uses: ./
+        id: install-ndl-r25-beta4
+        with:
+          ndk-version: r25-beta4
+          add-to-path: false
       - run: '! which ndk-build'
       - run: ${{ steps.install-ndk-21.outputs.ndk-path }}/ndk-build --version
       - run: ${{ steps.install-ndk-23.outputs.ndk-path }}/ndk-build --version
+      - run: ${{ steps.install-ndk-24.outputs.ndk-path }}/ndk-build --version
+      - run: ${{ steps.install-ndk-25-beta4.outputs.ndk-path }}/ndk-build --version
